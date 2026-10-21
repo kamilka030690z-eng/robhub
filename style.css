@@ -1,0 +1,261 @@
+body { 
+    font-family: Arial, Helvetica, sans-serif; 
+    background-color: #E1E1E1; 
+    margin: 0; 
+    padding: 0; 
+    color: #333; 
+}
+
+header { 
+    background: linear-gradient(to bottom, #003366, #001133); 
+    color: white; 
+    padding: 10px 20px; 
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center; 
+    border-bottom: 3px solid #000; 
+}
+
+.logo { font-size: 28px; font-weight: bold; letter-spacing: -1px; }
+.logo span { color: #FF0000; }
+.user-panel { font-size: 13px; }
+
+body.dark .dm-message.sent {
+    background: #2A4A2A; /* Темно-зеленый фон */
+    color: #E0E0E0; /* Светлый текст */
+    border-color: #4A7A4A;
+}
+
+body.dark .dm-message.received {
+    background: #333; /* Темно-серый фон */
+    color: #E0E0E0;
+    border-color: #555;
+}
+
+nav { 
+    background-color: #CCDDEE; 
+    padding: 6px 20px; 
+    border-bottom: 1px solid #99AABB; 
+    font-size: 13px; 
+}
+
+nav a { 
+    color: #003399; 
+    text-decoration: none; 
+    font-weight: bold; 
+    margin-right: 15px; 
+    position: relative; 
+}
+nav a:hover { text-decoration: underline; }
+
+.container { 
+    max-width: 1000px; 
+    margin: 15px auto; 
+    display: flex; 
+    gap: 15px; 
+    padding: 0 10px; 
+}
+
+.sidebar { 
+    width: 240px; 
+    background: #F2F2F2; 
+    border: 1px solid #A0A0A0; 
+    padding: 10px; 
+    border-radius: 5px; 
+    height: fit-content; 
+}
+
+.auth-box, .settings-box { 
+    background: white; 
+    border: 1px solid #A0A0A0; 
+    padding: 15px; 
+    border-radius: 4px; 
+    margin-bottom: 15px; 
+}
+
+.auth-box h3 { margin-top: 0; color: #003366; font-size: 16px; }
+
+.auth-box input, .settings-box input[type="text"] { 
+    width: 90%; 
+    padding: 5px; 
+    margin-bottom: 10px; 
+    border: 1px solid #A0A0A0; 
+}
+
+.settings-box input[type="text"] { width: 95%; }
+.settings-box select { padding: 4px; border: 1px solid #A0A0A0; }
+
+button, .auth-btn { 
+    background: linear-gradient(to bottom, #EEEEEE, #CCCCCC); 
+    border: 1px solid #777; 
+    padding: 5px 10px; 
+    cursor: pointer; 
+    font-weight: bold; 
+    font-size: 12px; 
+    margin-right: 5px; 
+}
+button:hover, .auth-btn:hover { background: linear-gradient(to bottom, #FFFFFF, #DDDDDD); }
+
+.avatar-box { 
+    background: white; 
+    border: 1px solid #CCC; 
+    text-align: center; 
+    padding: 10px; 
+    margin-bottom: 10px; 
+}
+
+.avatar-box img { 
+    width: 120px; 
+    height: 120px; 
+    object-fit: cover; 
+    border: 1px solid #999; 
+    background: #EEE; 
+}
+
+.btn-upload { 
+    width: 100%; 
+    background: linear-gradient(to bottom, #00CC00, #008800); 
+    color: white; 
+    text-align: center; 
+    padding: 10px; 
+    border: 1px solid #004400; 
+    border-radius: 4px; 
+    font-size: 14px; 
+    cursor: pointer; 
+}
+.btn-upload:hover { background: linear-gradient(to bottom, #00FF00, #00AA00); }
+
+.main-content { 
+    flex: 1; 
+    background: white; 
+    border: 1px solid #A0A0A0; 
+    padding: 15px; 
+    border-radius: 5px; 
+    min-height: 400px; 
+}
+
+.feed-title { 
+    font-size: 20px; 
+    font-weight: bold; 
+    color: #003366; 
+    margin-top: 0; 
+    margin-bottom: 15px; 
+    border-bottom: 2px dashed #CCDDEE; 
+    padding-bottom: 5px; 
+}
+
+.post { 
+    border: 1px solid #DDD; 
+    background: #FAFAFA; 
+    padding: 12px; 
+    margin-bottom: 15px; 
+    border-radius: 4px; 
+    display: flex; 
+    gap: 15px; 
+}
+
+.post-user-info { text-align: center; min-width: 80px; font-size: 12px; }
+.post-user-info img { width: 50px; height: 50px; border: 1px solid #CCC; object-fit: cover; background: #EEE; cursor: pointer; }
+.post-content { flex: 1; min-width: 0; }
+.post-meta { font-size: 11px; color: #777; margin-bottom: 5px; display: flex; justify-content: space-between; }
+.post-username { font-weight: bold; color: #003399; text-decoration: none; cursor: pointer; }
+.post-image { max-width: 100%; max-height: 350px; border: 2px solid #555; margin-top: 8px; display: block; }
+.post-caption { font-size: 14px; margin-top: 5px; }
+.like-section { margin-top: 8px; font-size: 12px; display: flex; align-items: center; gap: 10px; }
+.btn-delete { background: linear-gradient(to bottom, #FF8888, #CC4444); color: white; border: 1px solid #880000; font-size: 11px; padding: 3px 8px; }
+
+.comments-section { margin-top: 10px; border-top: 1px dashed #CCC; padding-top: 8px; }
+.comment { font-size: 12px; padding: 4px 6px; background: #F0F4F8; border-left: 3px solid #003399; margin-bottom: 4px; border-radius: 2px; }
+.comment b { color: #003399; }
+.comment-input-row { display: flex; gap: 5px; margin-top: 6px; }
+.comment-input-row input { flex: 1; padding: 4px; border: 1px solid #A0A0A0; font-size: 12px; }
+.comment-input-row button { font-size: 11px; padding: 4px 8px; }
+
+/* --- ИСПРАВЛЕННЫЙ БЛОК ЧАТА --- */
+.dm-container { display: flex; flex-direction: column; gap: 15px; }
+.dm-layout { display: flex; gap: 10px; border: 1px solid #A0A0A0; background: #F9F9F9; border-radius: 4px; min-height: 320px; }
+.dm-contacts { width: 170px; border-right: 1px solid #CCC; padding: 8px; background: #F2F2F2; }
+.dm-contacts-title { font-weight: bold; font-size: 12px; color: #003366; margin-bottom: 8px; border-bottom: 1px solid #CCC; padding-bottom: 4px; }
+.dm-contact-item { padding: 5px 6px; font-size: 12px; cursor: pointer; border-radius: 3px; margin-bottom: 3px; color: #003399; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.dm-contact-item:hover { background: #CCDDEE; }
+.dm-contact-item.active { background: #003399; color: white; }
+
+.dm-chat-area { flex: 1; display: flex; flex-direction: column; padding: 8px; min-width: 0; }
+.dm-chat-area > input { padding: 6px; border: 1px solid #A0A0A0; margin-bottom: 8px; font-size: 12px; width: 100%; box-sizing: border-box; }
+.dm-history { border: 1px solid #A0A0A0; background: #FFFFFF; padding: 10px; flex: 1; min-height: 220px; overflow-y: auto; display: flex; flex-direction: column; gap: 8px; }
+.dm-message { padding: 6px 10px; border-radius: 4px; max-width: 75%; font-size: 13px; line-height: 1.4; word-wrap: break-word; }
+.dm-message.sent { background: #D5E8D4; align-self: flex-end; border: 1px solid #B9E1B5; }
+.dm-message.received { background: #F5F5F5; align-self: flex-start; border: 1px solid #E0E0E0; }
+
+.dm-send-row { display: flex; gap: 6px; margin-top: 8px; align-items: stretch; }
+.dm-send-row textarea { flex: 1; padding: 6px; border: 1px solid #A0A0A0; height: 38px !important; min-height: 38px !important; max-height: 38px !important; resize: none; font-family: Arial, sans-serif; font-size: 12px; box-sizing: border-box; }
+.dm-send-row button { padding: 0 15px; }
+
+/* Темная тема для чата (вставляем прямо сюда) */
+body.dark .dm-contacts { background: #1E1E1E; border-right-color: #444; }
+body.dark .dm-contacts-title { color: #88BBFF; border-bottom-color: #444; }
+body.dark .dm-contact-item { color: #E0E0E0; }
+body.dark .dm-contact-item:hover { background: #333; }
+body.dark .dm-contact-item.active { background: #003399; }
+body.dark .dm-history { background: #1A1A1A; border-color: #444; }
+body.dark .dm-chat-area > input { background: #333; color: white; border-color: #555; }
+body.dark .dm-send-row textarea { background: #333; color: white; border-color: #555; }
+
+.modal { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); display: flex; justify-content: center; align-items: center; z-index: 100; }
+.modal-content { background: white; padding: 20px; border-radius: 5px; width: 400px; border: 2px solid #333; }
+.modal-content textarea { width: 95%; height: 60px; margin-bottom: 10px; font-family: Arial, sans-serif; }
+.modal-content input[type="text"] { width: 95%; padding: 5px; margin-bottom: 8px; }
+
+footer { text-align: center; font-size: 11px; color: #666; margin-top: 40px; padding: 20px; border-top: 1px solid #CCC; }
+
+/* --- ПРОФИЛЬ --- */
+.profile-header { position: relative; margin-bottom: 20px; border-radius: 6px; overflow: hidden; border: 1px solid #CCC; }
+.profile-banner { width: 100%; height: 150px; background: linear-gradient(45deg, #003366, #00CCFF); background-size: cover; background-position: center; }
+.profile-main-info { padding: 15px; display: flex; gap: 20px; background: white; align-items: flex-end; position: relative; margin-top: -40px; }
+.profile-avatar-container { width: 100px !important; height: 100px !important; position: relative; margin-top: -50px; }
+.profile-avatar { width: 100px !important; height: 100px !important; border-radius: 50%; border: 4px solid white; object-fit: cover; background: #EEE; box-shadow: 0 2px 5px rgba(0,0,0,0.2); }
+.profile-username { font-size: 22px; font-weight: bold; margin-bottom: 5px; }
+.profile-stats { display: flex; gap: 15px; font-size: 12px; color: #666; margin-top: 5px; }
+.profile-stats b { color: #333; font-size: 14px; }
+.profile-actions { margin-left: auto; display: flex; gap: 10px; margin-bottom: 15px; }
+.profile-body { display: flex; gap: 20px; margin-top: 20px; }
+.profile-side { width: 200px; }
+.profile-side-section { background: white; border: 1px solid #CCC; padding: 10px; border-radius: 4px; margin-bottom: 15px; }
+.friends-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 5px; margin-top: 10px; }
+.friend-mini { text-align: center; cursor: pointer; }
+.friend-mini img { width: 40px; height: 40px; border-radius: 50%; object-fit: cover; border: 1px solid #CCC; }
+.profile-main { flex: 1; }
+.wall-post { background: white; border: 1px solid #CCC; padding: 10px; border-radius: 4px; margin-bottom: 10px; }
+.wall-input-box { margin-bottom: 15px; display: flex; gap: 5px; }
+.wall-input-box input { flex: 1; padding: 5px; border: 1px solid #A0A0A0; }
+
+/* Рамки */
+.frame-simple { border: 4px solid #333 !important; }
+.frame-gradient { border: 4px solid transparent !important; background: linear-gradient(white, white) padding-box, linear-gradient(45deg, #f3ec78, #af4261) border-box; }
+
+/* --- ТЕМЫ --- */
+body.dark { background-color: #121212; color: #E0E0E0; }
+body.dark header { background: linear-gradient(to bottom, #1A1A1A, #000); border-bottom: 3px solid #333; }
+body.dark nav { background-color: #2A2A2A; border-bottom: 1px solid #444; }
+body.dark nav a { color: #88BBFF; }
+body.dark .sidebar, body.dark .main-content, body.dark .auth-box, body.dark .avatar-box, body.dark .post, body.dark .settings-box, body.dark .dm-layout, body.dark .modal-content, body.dark .profile-main-info, body.dark .profile-side-section, body.dark .wall-post { background: #1E1E1E; border-color: #444; color: #E0E0E0; }
+body.dark .feed-title { color: #88BBFF; border-bottom-color: #444; }
+body.dark input, body.dark textarea, body.dark select { background: #333; color: white; border-color: #555; }
+body.dark .comment { background: #2A2A2A; border-left-color: #88BBFF; }
+body.dark .comment b { color: #88BBFF; }
+/* Фикс белого фона истории сообщений в темной теме */
+body.dark .dm-history { background: #1A1A1A; border-color: #444; }
+
+body.retro { background-color: #E8EBF0; }
+body.retro .main-content { border-radius: 0; border: 1px solid #A5B2C5; }
+body.retro .post { background: #F0F4F8; border: 1px solid #C5D1E0; border-radius: 0; }
+body.retro .sidebar { border-radius: 0; background: #F0F4F8; border: 1px solid #C5D1E0; }
+body.retro header { background: linear-gradient(to bottom, #45688E, #2B4360); }
+body.retro .auth-btn, body.retro button { border-radius: 0; background: linear-gradient(to bottom, #FFFFFF, #D0D8E8); }
+
+/* Премиум */
+.premium-badge { color: #FFD700; font-size: 14px; margin-left: 3px; text-shadow: 0 0 3px rgba(255, 215, 0, 0.5); }
+.premium-username { color: #DAA520 !important; font-weight: bold; }
+.unread-badge { background: #FF0000; color: white; font-size: 10px; padding: 1px 5px; border-radius: 8px; margin-left: 3px; font-weight: bold; }
+.no-posts { color: #777; font-style: italic; text-align: center; padding: 20px; }
+.empty-contacts { color: #999; font-size: 11px; font-style: italic; padding: 5px; }

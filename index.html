@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RobHub - Community for Roblox Players</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header>
+        <div class="logo">Rob<span>Hub</span></div>
+        <div style="display: flex; align-items: center; gap: 15px;">
+            <div id="notificationBell" style="position: relative; cursor: pointer; display: none;" onclick="toggleNotifications()">
+                <span style="font-size: 20px;">🔔</span>
+                <span id="notifBadge" style="display:none; position: absolute; top: -5px; right: -8px; background: red; color: white; font-size: 10px; font-weight: bold; padding: 2px 5px; border-radius: 10px;">0</span>
+                <div id="notifDropdown" style="display:none; position: absolute; top: 30px; right: 0; width: 250px; background: white; border: 1px solid #CCC; box-shadow: 0 4px 8px rgba(0,0,0,0.2); border-radius: 4px; z-index: 1000; color: #333; text-align: left; max-height: 300px; overflow-y: auto;">
+                    <div style="padding: 8px; font-weight: bold; border-bottom: 1px solid #EEE; background: #F9F9F9;">Уведомления</div>
+                    <div id="notifList" style="padding: 5px;"></div>
+                </div>
+            </div>
+            <div id="userPanel" class="user-panel">Guest | Please log in</div>
+        </div>
+    </header>
+
+    <nav>
+        <a href="#" onclick="switchTab('feedTab')">Home Feed</a>
+        <a href="#" onclick="switchTab('messagesTab')">Direct Messages</a>
+        <a href="#" onclick="openMyProfile()">My Profile</a>
+        <a href="#" onclick="switchTab('searchTab')">Search Users</a>
+        <a href="#" onclick="switchTab('settingsTab')">Profile Settings</a>
+        <a href="#" onclick="switchTab('siteSettingsTab')">Site Settings</a>
+    </nav>
+
+    <div class="container">
+        <aside class="sidebar">
+            <div id="authBox" class="auth-box">
+                <h3>Login / Register</h3>
+                <input type="text" id="usernameInput" placeholder="Username">
+                <input type="password" id="passwordInput" placeholder="Password" onkeydown="if(event.key==='Enter')login()">
+                <div>
+                    <button class="auth-btn" onclick="login()">Login</button>
+                    <button class="auth-btn" onclick="register()">Register</button>
+                </div>
+            </div>
+            <div id="avatarBox" class="avatar-box" style="display: none;">
+                <img id="myAvatarImg" src="" alt="Avatar">
+                <div id="userProfileName" style="font-weight:bold; margin-top:5px; font-size:14px; color:#003399;"></div>
+                <div style="color:green; font-size:11px; margin-bottom: 8px;">● Online</div>
+                <div id="myStatusText" style="font-size:12px; font-style:italic; margin-bottom:5px; color:#555;"></div>
+                <div id="myPostCount" style="font-size:11px; color:#777; margin-bottom:10px;"></div>
+                <button class="auth-btn" style="width: 100%;" onclick="logout()">Logout</button>
+            </div>
+            <button id="uploadBtn" class="btn-upload" style="display: none;" onclick="openModal()">Upload Post</button>
+        </aside>
+
+        <main class="main-content">
+            <div id="feedTab" class="tab-content">
+                <h2 class="feed-title">Community Posts</h2>
+                <div id="newsFeed"></div>
+            </div>
+
+            <div id="searchTab" class="tab-content" style="display: none;">
+                <h2 class="feed-title">Search Users</h2>
+                <div class="settings-box">
+                    <input type="text" id="searchInput" placeholder="Enter username..." style="width: 70%; padding: 8px;" oninput="searchUsers()">
+                    <button class="auth-btn" onclick="searchUsers()">Search</button>
+                </div>
+                <div id="searchResults" style="margin-top: 15px;"></div>
+            </div>
+
+            <div id="profileTab" class="tab-content" style="display: none;">
+                <div id="profileContent"></div>
+            </div>
+
+            <div id="messagesTab" class="tab-content" style="display: none;">
+                <h2 class="feed-title">Direct Messages</h2>
+                <div class="dm-container">
+                    <div class="dm-layout">
+                        <div class="dm-contacts">
+                            <div class="dm-contacts-title">Chats</div>
+                            <div id="dmContactsList"></div>
+                        </div>
+                        <div class="dm-chat-area">
+                            <input type="text" id="dmTargetInput" placeholder="Enter recipient username..." oninput="renderMessages()">
+                            <div id="dmHistory" class="dm-history"></div>
+                            <div class="dm-send-row">
+                                <textarea id="dmTextInput" placeholder="Type a message..." onkeydown="if(event.key==='Enter' && !event.shiftKey){event.preventDefault();sendDirectMessage();}"></textarea>
+                                <button class="auth-btn" onclick="sendDirectMessage()">Send</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="settingsTab" class="tab-content" style="display: none;">
+                <h2 class="feed-title">Profile Settings</h2>
+                <div class="settings-box">
+                    <label><b>Status Message:</b></label><br>
+                    <input type="text" id="statusChangeInput" placeholder="What's on your mind?"><br><br>
+                    <label><b>Avatar Image:</b></label><br>
+                    <select id="avatarSourceSelect" onchange="toggleAvatarInput()">
+                        <option value="url">Image URL</option>
+                        <option value="file">Upload File from PC</option>
+                    </select><br><br>
+                    <input type="text" id="avatarUrlInput" placeholder="Paste image URL here...">
+                    <input type="file" id="avatarFileInput" accept="image/*" style="display:none;"><br><br>
+                    <label><b>Profile Banner (URL):</b></label><br>
+                    <input type="text" id="bannerUrlInput" placeholder="Paste banner URL..."><br><br>
+                    <label><b>Avatar Frame:</b></label><br>
+                    <select id="frameSelect">
+                        <option value="none">None</option>
+                        <option value="simple">Simple Border</option>
+                        <option value="gradient">Neon Gradient</option>
+                    </select><br><br>
+                    <label><b>Privacy:</b></label><br>
+                    <input type="checkbox" id="hideOnlineCheckbox"> Hide my online status<br><br>
+                    <button class="auth-btn" onclick="saveProfileSettings()">Save Profile</button>
+                </div>
+            </div>
+
+            <div id="siteSettingsTab" class="tab-content" style="display: none;">
+                <h2 class="feed-title">Site Settings</h2>
+                <div class="settings-box">
+                    <label><b>Choose Site Theme:</b></label><br><br>
+                    <select id="themeSelect" onchange="changeTheme()">
+                        <option value="light">Light (Classic)</option>
+                        <option value="dark">Dark Mode 🌙</option>
+                        <option value="retro">Retro VK (Old School)</option>
+                    </select><br><br>
+                    <div id="premiumAdminBox" style="display: none; margin-top: 20px; padding-top: 20px; border-top: 1px dashed #CCC;">
+                        <label style="color: red;"><b>👑 Creator Admin Panel:</b></label><br><br>
+                        <input type="text" id="premiumTargetInput" placeholder="Enter username...">
+                        <button class="auth-btn" onclick="givePremium()">Give Premium</button>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <div id="uploadModal" class="modal" style="display:none;">
+        <div class="modal-content">
+            <h3>Upload New Snap</h3>
+            <textarea id="postCaptionInput" placeholder="Enter caption..."></textarea><br><br>
+            <label>Choose Image Source:</label>
+            <select id="postImageSourceSelect" onchange="togglePostImageInput()">
+                <option value="url">URL Link</option>
+                <option value="file">File from PC</option>
+            </select><br><br>
+            <input type="text" id="postImageUrlInput" placeholder="Paste image URL...">
+            <input type="file" id="postFileInput" accept="image/*" style="display:none;"><br><br>
+            <button class="auth-btn" onclick="submitNewPost()">Publish</button>
+            <button class="auth-btn" onclick="closeModal()">Cancel</button>
+        </div>
+    </div>
+
+    <footer>
+        <div style="font-weight: bold; color: #003366; font-size: 14px; margin-bottom: 5px;">RobHub © 2026</div>
+        <div>Made with ❤️ for Roblox players. | Beta v1.0</div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
